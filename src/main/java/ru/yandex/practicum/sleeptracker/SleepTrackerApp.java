@@ -41,7 +41,7 @@ public class SleepTrackerApp {
             return reader.lines()
                     .filter(line -> !line.isBlank())
                     .map(line -> parseLine(line, formatter))
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при чтении файла: " + fileName, e);
         }

@@ -40,7 +40,7 @@ public class ChronotypeAnalyzer implements SleepAnalyzer {
         // берём только ночные записи (сон попадает в интервал 00:00–06:00)
         List<SleepingSession> nightSessions = sessions.stream()
                 .filter(this::isSleepingSessionBetween0And6)
-                .collect(Collectors.toList());
+                .toList();
 
         if (nightSessions.isEmpty()) {
             return new SleepAnalysisResult<>("Хронотип пользователя: ", Chronotype.DOVE.rusName);

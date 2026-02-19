@@ -47,9 +47,7 @@ public class SleeplessNightsAnalyzer implements SleepAnalyzer {
 
         LocalDate lastNightDate = lastSessionEnd.toLocalDate();
 
-        long nightsCount = lastNightDate.plusDays(1).toEpochDay() - firstNightDate.toEpochDay();
-
-        return nightsCount;
+        return lastNightDate.plusDays(1).toEpochDay() - firstNightDate.toEpochDay();
     }
 
     // есть ли в сессии сон в промежутке 00:00–06:00
@@ -105,8 +103,8 @@ public class SleeplessNightsAnalyzer implements SleepAnalyzer {
         LocalDate endNight = lastEnd.toLocalDate();
 
         Set<LocalDate> nightsWithSleep = sessions.stream()
-                .filter(session -> isSleepingSessionBetween0And6(session))
-                .map(session -> getNightDate(session))
+                .filter(this::isSleepingSessionBetween0And6)
+                .map(this::getNightDate)
                 .filter(date -> !date.isBefore(startNight) && !date.isAfter(endNight))
                 .collect(Collectors.toSet());
 
