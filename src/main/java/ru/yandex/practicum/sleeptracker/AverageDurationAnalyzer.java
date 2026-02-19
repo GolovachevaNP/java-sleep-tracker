@@ -12,7 +12,7 @@ public class AverageDurationAnalyzer implements SleepAnalyzer {
                 .average()
                 .orElse(0.0);
 
-        averageDurationSession = Math.round(averageDurationSession * 100.0)/100.0; // округление значения до сотых
+        averageDurationSession = Math.round(averageDurationSession * 100.0) / 100.0; // округление значения до сотых
         return new SleepAnalysisResult<>("Средняя продолжительность сессии (в минутах): ", averageDurationSession);
     }
 }
